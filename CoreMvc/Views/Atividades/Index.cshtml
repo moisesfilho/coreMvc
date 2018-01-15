@@ -1,0 +1,36 @@
+@using System.Collections.Generic
+@model List<CoreMvc.Models.Views.Atividade>
+@{
+    ViewData["Title"] = "Atividades";
+}
+
+<div class="row">
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
+
+    <div class="table">
+    <div class="row" id="listaAtividades">        
+        <span class="col-md-2">Atividade</span>
+        <span class="col-md-2">Descricao</span>
+        <span class="col-md-5">Detalhes</span>
+        <span class="col-md-1">Pontos</span>
+        <span class="col-md-1">Quantidade Realizada</span>
+        <span class="col-md-1">Total</span>        
+    </div>
+    @for(var index=0; index < Model.Count(); index++)
+    {
+        <div class="row">
+            <span class="col-md-2">@Model[index].Nome</span>
+            <span class="col-md-2">@Model[index].Descricao</span>
+            <span class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></span>
+            <span class="col-md-1">@Model[index].Pontos</span>
+            <span class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade" /></span>            
+            <span class="col-md-1">@Model[index].Total</span>            
+        </div>
+    }
+    </div>
+</div>
+<hr>
+<div class="row blue">
+    <button class="pull-right">Salvar</button>
+</div>
