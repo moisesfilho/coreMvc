@@ -8,29 +8,32 @@
     <h2>@ViewData["Title"]</h2>
     <h3>@ViewData["Message"]</h3>
 
-    <div class="table">
-    <div class="row" id="listaAtividades">        
-        <span class="col-md-2">Atividade</span>
-        <span class="col-md-2">Descricao</span>
-        <span class="col-md-5">Detalhes</span>
-        <span class="col-md-1">Pontos</span>
-        <span class="col-md-1">Quantidade Realizada</span>
-        <span class="col-md-1">Total</span>        
-    </div>
-    @for(var index=0; index < Model.Count(); index++)
-    {
-        <div class="row">
-            <span class="col-md-2">@Model[index].Nome</span>
-            <span class="col-md-2">@Model[index].Descricao</span>
-            <span class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></span>
-            <span class="col-md-1">@Model[index].Pontos</span>
-            <span class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade" /></span>            
-            <span class="col-md-1">@Model[index].Total</span>            
-        </div>
-    }
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="row" id="listaAtividades">        
+                <th class="col-md-2">Atividade</th>
+                <th class="col-md-2">Descricao</th>
+                <th class="col-md-5">Detalhes</th>
+                <th class="col-md-1">Pontos</th>
+                <th class="col-md-1">Quantidade Realizada</th>
+                <th class="col-md-1">Total</th>        
+            </tr>
+        </thead>
+        <tbody>        
+            @for(var index=0; index < Model.Count(); index++)
+            {
+                <tr class="row">
+                    <td class="col-md-2">@Model[index].Nome</td>
+                    <td class="col-md-2">@Model[index].Descricao</td>
+                    <td class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></td>
+                    <td class="col-md-1">@Model[index].Pontos</td>
+                    <td class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade" /></td>            
+                    <td class="col-md-1">@Model[index].Total</td>            
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<hr>
 <div class="row blue">
     <button class="pull-right">Salvar</button>
 </div>
