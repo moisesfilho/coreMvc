@@ -1,3 +1,4 @@
+using CoreMvc.Controllers;
 using NUnit.Framework;
 
 namespace Tests
@@ -10,11 +11,11 @@ namespace Tests
         [Test]
         public void IndexSempreRetornaUmaView()
         {
-            var atividadesController = new AtividadesControllerTest();
+            var atividadesController = new AtividadesController();
 
             var result = atividadesController.Index();
 
-            Assert.That(result, IsNot.Null);
+            Assert.That(result, Is.Not.True);
         }
     }
 }
