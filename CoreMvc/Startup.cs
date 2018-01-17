@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreMvc.Models.Entities;
+using CoreMvc.Models.Repositories.Interfaces;
+using CoreMvc.Models.Repositoriess;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -36,8 +38,7 @@ namespace CoreMvc
                 return Fluently
                     .Configure()
                     .Database(
-                        SQLiteConfiguration.Standard
-                        .UsingFile("aplicacoes.db")
+                        SQLiteConfiguration.Standard.InMemory
                     )
                     // .Database(() =>
                     // {
@@ -58,6 +59,7 @@ namespace CoreMvc
                 .OpenSession()
             );
 
+            services.AddScoped<IMetas, Metas>();
         }
 
         private static void BuildSchema(Configuration config)

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreMvc.Models;
+using CoreMvc.Models.Repositories.Interfaces;
 using CoreMvc.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,12 @@ namespace CoreMvc.Controllers
 {
     public class AtividadesController : Controller
     {
+        private readonly IMetas metas;
+        public AtividadesController(IMetas metas)
+        {
+            this.metas = metas;
+        }
+
         public IActionResult Index()
         {
             var listaDeAtividades = new List<Atividade>

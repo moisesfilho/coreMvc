@@ -7,7 +7,7 @@ namespace CoreMvc.Models.Entities
     {
         public MetaMap()
         {
-            Id(meta => meta.Id).GeneratedBy.GuidComb();
+            Id(meta => meta.Id);
             Map(meta => meta.Nome).Not.Nullable();
             Map(meta => meta.Descricao);
             Map(meta => meta.Pontos);
