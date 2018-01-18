@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Interfaces;
 using CoreMvc.Models.Repositoriess;
-using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.AspNetCore.Builder;
@@ -21,12 +20,11 @@ namespace CoreMvc
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        }        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,9 +35,7 @@ namespace CoreMvc
             {
                 return Fluently
                     .Configure()
-                    .Database(
-                        SQLiteConfiguration.Standard.InMemory
-                    )
+                    .Database(SQLiteConfiguration.Standard.InMemory().ShowSql())
                     // .Database(() =>
                     // {
                     //     return FluentNHibernate.Cfg.Db.MsSqlConfiguration
@@ -48,7 +44,7 @@ namespace CoreMvc
                     //         .ConnectionString("");
                     // })
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<MetaMap>())
-                    .ExposeConfiguration(BuildSchema)
+                    //.ExposeConfiguration(BuildSchema)
                     .BuildSessionFactory();
             });
 
@@ -65,8 +61,8 @@ namespace CoreMvc
         private static void BuildSchema(Configuration config)
         {
             // delete the existing db on each run
-            if (File.Exists("aplicacoes.db"))
-                File.Delete("aplicacoes.db");
+             if (File.Exists("aplicacoes.db"))
+                 File.Delete("aplicacoes.db");
 
             // this NHibernate tool takes a configuration (with mapping info in)
             // and exports a database schema from it
