@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public void IndexSempreRetornaUmaView()
         {
-            var atividadesController = new AtividadesController();
+            var atividadesController = new AtividadesController(null);
 
             var result = atividadesController.Index();
 
