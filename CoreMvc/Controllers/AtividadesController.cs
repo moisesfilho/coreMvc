@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using CoreMvc.Models;
+using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Interfaces;
 using CoreMvc.Models.Views;
 using Microsoft.AspNetCore.Mvc;
@@ -20,16 +18,35 @@ namespace CoreMvc.Controllers
 
         public IActionResult Index()
         {
-            var listaDeAtividades = new List<Atividade>
+            var metas = this.metas.Todas();
+
+            var listaDeAtividades = new List<Atividade>();
+
+            foreach (var meta in metas)
             {
-                new Atividade { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3, Quantidade = 3 },
-                new Atividade { Nome = "Atividade 2", Descricao = "Descrição da Atividade 2", Pontos = 1.1F, Quantidade = 4 },
-                new Atividade { Nome = "Atividade 3", Descricao = "Descrição da Atividade 3", Pontos = 10, Quantidade = 1 },
-                new Atividade { Nome = "Atividade 4", Descricao = "Descrição da Atividade 4", Pontos = 1.7F, Quantidade = 5 },
-                new Atividade { Nome = "Atividade 5", Descricao = "Descrição da Atividade 5", Pontos = 5, Quantidade = 2 }
-            };
+                listaDeAtividades.Add(new Atividade { Nome = meta.Nome, Descricao = meta.Descricao});
+            }
 
             return View(listaDeAtividades);
+        }
+
+        public IActionResult CargarInicial()
+        {
+            var metas = new List<Meta>
+            {
+                new Meta { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3},
+                new Meta { Nome = "Atividade 2", Descricao = "Descrição da Atividade 2", Pontos = 1.1F},
+                new Meta { Nome = "Atividade 3", Descricao = "Descrição da Atividade 3", Pontos = 10},
+                new Meta { Nome = "Atividade 4", Descricao = "Descrição da Atividade 4", Pontos = 1.7F},
+                new Meta { Nome = "Atividade 5", Descricao = "Descrição da Atividade 5", Pontos = 5}
+            };
+
+            foreach (var meta in metas)
+            {
+                this.metas.Salvar(meta);
+            }
+            
+            return Content("Carregado!");
         }
 
         public IActionResult Error()

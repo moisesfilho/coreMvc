@@ -1,18 +1,26 @@
 using System.Collections.Generic;
 using CoreMvc.Models.Entities;
+using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
-using NHibernate;
 
-namespace CoreMvc.Models.Repositoriess
+namespace CoreMvc.Models.Repositories
 {
     public class Metas : IMetas
     {
-        private ISession sessao;
+        private readonly MetasContext context;
+        public Metas(MetasContext context)
+        {
+            this.context = context;
+        }
 
-        public Metas(ISession sessao) => this.sessao = sessao;
+        void IMetas.Salvar(Meta meta)
+        {
+            context.Metas.Add(meta);
+        }
 
-        void IMetas.Salvar(Meta meta) => sessao.SaveOrUpdate(meta);
-
-        IList<Meta> IMetas.Todas() => sessao.QueryOver<Meta>().List();
+        IList<Meta> IMetas.Todas()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
