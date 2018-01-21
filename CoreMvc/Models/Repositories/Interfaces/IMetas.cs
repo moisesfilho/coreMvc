@@ -5,7 +5,7 @@ namespace CoreMvc.Models.Repositories.Interfaces
 {
     public interface IMetas
     {
-         IList<Meta> Todas();
+         IEnumerable<Meta> Todas();
          void Salvar(Meta meta);
     }
 }
