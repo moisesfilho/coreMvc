@@ -1,39 +1,55 @@
 @using System.Collections.Generic
 @model List<CoreMvc.Models.Views.MetaRealizadaView>
+
 @{
     ViewData["Title"] = "Metas Realizadas";
 }
 
-<div class="row">
-    <h2>@ViewData["Title"]</h2>
-    <h3>@ViewData["Message"]</h3>
-
-    <table class="table table-striped">
-        <thead>
-            <tr class="row" id="listaMetasRealizadas">
-                <th class="col-md-2">Atividade</th>
-                <th class="col-md-2">Descricao</th>
-                <th class="col-md-5">Detalhes</th>
-                <th class="col-md-1">Pontos</th>
-                <th class="col-md-1">Quantidade Realizada</th>
-                <th class="col-md-1">Total</th>        
-            </tr>
-        </thead>
-        <tbody>        
-            @for(var index=0; index < Model.Count(); index++)
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            function onComplete(name)
             {
-                <tr class="row">
-                    <td class="col-md-2">@Model[index].Nome</td>
-                    <td class="col-md-2">@Model[index].Descricao</td>
-                    <td class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></td>
-                    <td class="col-md-1">@Model[index].Pontos</td>
-                    <td class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade" /></td>
-                    <td class="col-md-1">@Model[index].Total</td>            
-                </tr>
+                alert(name);
             }
-        </tbody>
-    </table>
-</div>
-<div class="row blue">
-    <button class="pull-right">Salvar</button>
+        });
+    </script>    
+}
+
+<div>
+    <form asp-controller="MetasRealizadas" asp-action="Salvar" data-ajax="true" data-ajax-method="POST" data-ajax-complete="onComplete">
+        <div class="row"></div>
+            <h2>@ViewData["Title"]</h2>
+            <h3>@ViewData["Message"]</h3>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="row" id="listaMetasRealizadas">
+                        <th class="col-md-2">Atividade</th>
+                        <th class="col-md-2">Descricao</th>
+                        <th class="col-md-5">Detalhes</th>
+                        <th class="col-md-1">Pontos</th>
+                        <th class="col-md-1">Quantidade Realizada</th>
+                        <th class="col-md-1">Total</th>        
+                    </tr>
+                </thead>
+                <tbody>        
+                    @for(var index=0; index < Model.Count(); index++)
+                    {
+                        <tr class="row">
+                            <td class="col-md-2"><input asp-for="@Model[index].Nome" type="hidden"/>@Model[index].Nome</td>
+                            <td class="col-md-2"><input asp-for="@Model[index].Descricao" type="hidden"/>@Model[index].Descricao</td>
+                            <td class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></td>
+                            <td class="col-md-1"><input asp-for="@Model[index].Pontos" type="hidden"/>@Model[index].Pontos</td>
+                            <td class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade"/></td>
+                            <td class="col-md-1"><input asp-for="@Model[index].Total" type="hidden"/>@Model[index].Total</td>            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row blue">
+            <button class="pull-right">Salvar</button>
+        </div>
+    </form>
 </div>

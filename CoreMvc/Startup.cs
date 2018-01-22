@@ -25,7 +25,10 @@ namespace CoreMvc
                                         .ConfigurationExtensions
                                         .GetConnectionString(this.Configuration, "DefaultConnection");
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true; // false by default
+            });
             services.AddDbContext<CoreMvcDbContext>(options => options.UseSqlite(conString));
             services.AddScoped<IMetas, Metas>();
         }

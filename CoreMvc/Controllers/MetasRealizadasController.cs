@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using CoreMvc.Models;
 using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Interfaces;
@@ -24,10 +25,23 @@ namespace CoreMvc.Controllers
 
             foreach (var meta in metas)
             {
-                metasRealizadas.Add(new MetaRealizadaView { Nome = meta.Nome, Descricao = meta.Descricao, Pontos = meta.Pontos});
+                metasRealizadas.Add(new MetaRealizadaView { Nome = meta.Nome, Descricao = meta.Descricao, Pontos = meta.Pontos });
             }
 
             return View(metasRealizadas);
+        }
+
+        [HttpPost]
+        public IActionResult Salvar(IEnumerable<MetaRealizadaView> metasRealizadasView)
+        {
+            var teste = new StringBuilder();
+
+            foreach (var meta in metasRealizadasView)
+            {
+                teste.AppendLine(meta.Descricao);
+            }
+
+            return Content("Chegou!");
         }
 
         public IActionResult ResetDados()
@@ -36,24 +50,27 @@ namespace CoreMvc.Controllers
 
             var metas = new List<Meta>
             {
-                new Meta { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3},
-                new Meta { Nome = "Atividade 2", Descricao = "Descrição da Atividade 2", Pontos = 1.1F},
-                new Meta { Nome = "Atividade 3", Descricao = "Descrição da Atividade 3", Pontos = 10},
-                new Meta { Nome = "Atividade 4", Descricao = "Descrição da Atividade 4", Pontos = 1.7F},
-                new Meta { Nome = "Atividade 5", Descricao = "Descrição da Atividade 5", Pontos = 5}
+                new Meta { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3 },
+                new Meta { Nome = "Atividade 2", Descricao = "Descrição da Atividade 2", Pontos = 1.1F },
+                new Meta { Nome = "Atividade 3", Descricao = "Descrição da Atividade 3", Pontos = 10 },
+                new Meta { Nome = "Atividade 4", Descricao = "Descrição da Atividade 4", Pontos = 1.7F },
+                new Meta { Nome = "Atividade 5", Descricao = "Descrição da Atividade 5", Pontos = 5 }
             };
 
             foreach (var meta in metas)
             {
                 this.metas.Salvar(meta);
             }
-            
+
             return Content("Carregado!");
         }
 
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
     }
 }
