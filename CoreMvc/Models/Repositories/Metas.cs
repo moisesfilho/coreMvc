@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
@@ -18,9 +19,9 @@ namespace CoreMvc.Models.Repositories
             context.Metas.Add(meta);
         }
 
-        IList<Meta> IMetas.Todas()
+        IEnumerable<Meta> IMetas.Todas()
         {
-            throw new System.NotImplementedException();
+            return from m in context.Metas select m;
         }
     }
 }
