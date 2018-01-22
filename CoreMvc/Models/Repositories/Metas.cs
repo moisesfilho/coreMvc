@@ -3,25 +3,33 @@ using System.Linq;
 using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreMvc.Models.Repositories
 {
     public class Metas : IMetas
     {
-        private readonly MetasContext context;
-        public Metas(MetasContext context)
+        private readonly CoreMvcDbContext context;
+        public Metas(CoreMvcDbContext context)
         {
             this.context = context;
         }
 
-        void IMetas.Salvar(Meta meta)
+        public void Salvar(Meta meta)
         {
             context.Metas.Add(meta);
+            context.SaveChanges();
         }
 
-        IEnumerable<Meta> IMetas.Todas()
+        public IEnumerable<Meta> Todas()
         {
             return from m in context.Metas select m;
+        }
+
+        public void DeletarTodos()
+        {
+            context.Database.ExecuteSqlCommand("DELETE FROM meta");
+            context.SaveChanges();
         }
     }
 }

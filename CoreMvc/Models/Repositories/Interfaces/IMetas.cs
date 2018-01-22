@@ -7,5 +7,6 @@ namespace CoreMvc.Models.Repositories.Interfaces
     {
          IEnumerable<Meta> Todas();
          void Salvar(Meta meta);
+         void DeletarTodos();
     }
 }

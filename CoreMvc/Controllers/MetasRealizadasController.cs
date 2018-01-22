@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreMvc.Controllers
 {
-    public class AtividadesController : Controller
+    public class MetasRealizadasController : Controller
     {
         private readonly IMetas metas;
-        public AtividadesController(IMetas metas)
+        public MetasRealizadasController(IMetas metas)
         {
             this.metas = metas;
         }
@@ -20,18 +20,20 @@ namespace CoreMvc.Controllers
         {
             var metas = this.metas.Todas();
 
-            var listaDeAtividades = new List<Atividade>();
+            var metasRealizadas = new List<MetaRealizadaView>();
 
             foreach (var meta in metas)
             {
-                listaDeAtividades.Add(new Atividade { Nome = meta.Nome, Descricao = meta.Descricao});
+                metasRealizadas.Add(new MetaRealizadaView { Nome = meta.Nome, Descricao = meta.Descricao, Pontos = meta.Pontos});
             }
 
-            return View(listaDeAtividades);
+            return View(metasRealizadas);
         }
 
-        public IActionResult CargarInicial()
+        public IActionResult ResetDados()
         {
+            this.metas.DeletarTodos();
+
             var metas = new List<Meta>
             {
                 new Meta { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3},

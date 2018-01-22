@@ -1,7 +1,7 @@
 using CoreMvc.Controllers;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Controllers
 {
     public class AtividadesControllerTest
     {
@@ -11,7 +11,7 @@ namespace Tests
         [Test]
         public void IndexSempreRetornaUmaView()
         {
-            var atividadesController = new AtividadesController(null);
+            var atividadesController = new MetasRealizadasController(null);
 
             var result = atividadesController.Index();
 
