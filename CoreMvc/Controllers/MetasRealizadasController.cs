@@ -41,7 +41,7 @@ namespace CoreMvc.Controllers
                 teste.AppendLine(meta.Descricao);
             }
 
-            return Content("Chegou!");
+            return Content(teste.ToString());
         }
 
         public IActionResult ResetDados()

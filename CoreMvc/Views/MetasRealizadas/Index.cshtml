@@ -37,6 +37,7 @@
                     @for(var index=0; index < Model.Count(); index++)
                     {
                         <tr class="row">
+                            <input asp-for="@Model[index].Id" type="hidden"/>
                             <td class="col-md-2"><input asp-for="@Model[index].Nome" type="hidden"/>@Model[index].Nome</td>
                             <td class="col-md-2"><input asp-for="@Model[index].Descricao" type="hidden"/>@Model[index].Descricao</td>
                             <td class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></td>

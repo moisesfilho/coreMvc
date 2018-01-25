@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CoreMvc.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoreMvc.Models.Repositories.Context
 {
@@ -13,8 +14,18 @@ namespace CoreMvc.Models.Repositories.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Meta>().ToTable("meta").HasKey(m => m.Id);
+            base.OnModelCreating(builder);
+
+            // builder.Entity<Meta>().Property(m => m.Nome).HasColumnName("DSC_CATALOGO");            
+            // builder.Entity<Meta>().HasKey(m => m.Id).HasName("SEQ_CATALOGO");
+            // // builder.Entity<Meta>()
+            // //        .Property(i => i.Id)
+            // //        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+            // //        .HasColumnName("SEQ_CATALOGO");
+            // builder.Entity<Meta>().ToTable("CATALOGO");
+
             builder.Entity<MetaRealizada>().ToTable("metaRealizada").HasKey(m => m.Id);
+            
             base.OnModelCreating(builder);
         }
     }

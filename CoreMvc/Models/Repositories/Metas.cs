@@ -28,8 +28,8 @@ namespace CoreMvc.Models.Repositories
 
         public void DeletarTodos()
         {
-            context.Database.ExecuteSqlCommand("DELETE FROM meta");
-            context.SaveChanges();
+            //context.Database.ExecuteSqlCommand("DELETE FROM meta");
+            //context.SaveChanges();
         }
     }
 }

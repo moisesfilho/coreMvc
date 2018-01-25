@@ -13,7 +13,7 @@
     "inputFiles": [
       "wwwroot/js/site.js",
       "wwwroot/lib/jquery/jquery.js",
-      "wwwroot/lib/jquery-validation/jquery-validation.js",
+      "wwwroot/lib/jquery-validation/jquery-validation.js", 
       "wwwroot/lib/jquery-validation-unobtrusive/jquery-validation-unobtrusive.js"
     ],
     // Optionally specify minification options

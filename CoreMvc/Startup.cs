@@ -29,7 +29,8 @@ namespace CoreMvc
             {
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
-            services.AddDbContext<CoreMvcDbContext>(options => options.UseSqlite(conString));
+            
+            services.AddDbContext<CoreMvcDbContext>(options => options.UseSqlServer(conString));
             services.AddScoped<IMetas, Metas>();
         }
 

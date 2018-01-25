@@ -1,5 +1,7 @@
 using CoreMvc.Controllers;
+using CoreMvc.Models.Repositories.Interfaces;
 using NUnit.Framework;
+using NSubstitute;
 
 namespace Tests.Controllers
 {
@@ -11,11 +13,13 @@ namespace Tests.Controllers
         [Test]
         public void IndexSempreRetornaUmaView()
         {
-            var atividadesController = new MetasRealizadasController(null);
+            var metas = Substitute.For<IMetas>();
+
+            var atividadesController = new MetasRealizadasController(metas);
 
             var result = atividadesController.Index();
 
-            Assert.That(result, Is.Not.True);
+            Assert.That(result, Is.Not.Null);
         }
     }
 }
