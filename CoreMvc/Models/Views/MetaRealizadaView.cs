@@ -7,7 +7,7 @@ namespace CoreMvc.Models.Views
         private float total;
         public long Id { get; set; }
         public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public string Requisitos { get; set; }
         public float Pontos { get; set; }
         public int Quantidade { get; set; }
         public float Total

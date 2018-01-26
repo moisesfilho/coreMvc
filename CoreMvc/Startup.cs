@@ -31,7 +31,7 @@ namespace CoreMvc
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
             
-            services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle("Data Source=10.10.57.116:1521/dese;User Id=CONSEGWEB_SAD;Password=sad123"));
+            services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle(conString));
             services.AddScoped<IMetas, Metas>();
         }
 

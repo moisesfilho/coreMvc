@@ -22,8 +22,8 @@ namespace CoreMvc.Models.Repositories
         }
 
         public IEnumerable<Meta> Todas()
-        {
-            return from m in context.Metas select m;
+        {            
+            return from meta in context.Metas select meta;
         }
 
         public void DeletarTodos()

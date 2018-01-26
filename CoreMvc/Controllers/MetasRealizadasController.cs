@@ -25,7 +25,12 @@ namespace CoreMvc.Controllers
 
             foreach (var meta in metas)
             {
-                metasRealizadas.Add(new MetaRealizadaView { Nome = meta.Nome, Descricao = meta.Descricao, Pontos = meta.Pontos });
+                metasRealizadas.Add(new MetaRealizadaView
+                {
+                    Nome = meta.Nome,
+                    Requisitos = meta.Requisitos,
+                    Pontos = meta.Pontos
+                });
             }
 
             return View(metasRealizadas);
@@ -38,7 +43,7 @@ namespace CoreMvc.Controllers
 
             foreach (var meta in metasRealizadasView)
             {
-                teste.AppendLine(meta.Descricao);
+                teste.AppendLine(meta.Requisitos);
             }
 
             return Content(teste.ToString());
@@ -50,11 +55,11 @@ namespace CoreMvc.Controllers
 
             var metas = new List<Meta>
             {
-                new Meta { Nome = "Atividade 1", Descricao = "Descrição da Atividade 1", Pontos = 3 },
-                new Meta { Nome = "Atividade 2", Descricao = "Descrição da Atividade 2", Pontos = 1.1F },
-                new Meta { Nome = "Atividade 3", Descricao = "Descrição da Atividade 3", Pontos = 10 },
-                new Meta { Nome = "Atividade 4", Descricao = "Descrição da Atividade 4", Pontos = 1.7F },
-                new Meta { Nome = "Atividade 5", Descricao = "Descrição da Atividade 5", Pontos = 5 }
+                new Meta { Nome = "Atividade 1", Requisitos = "Descrição da Atividade 1", Pontos = 3 },
+                new Meta { Nome = "Atividade 2", Requisitos = "Descrição da Atividade 2", Pontos = 1.1F },
+                new Meta { Nome = "Atividade 3", Requisitos = "Descrição da Atividade 3", Pontos = 10 },
+                new Meta { Nome = "Atividade 4", Requisitos = "Descrição da Atividade 4", Pontos = 1.7F },
+                new Meta { Nome = "Atividade 5", Requisitos = "Descrição da Atividade 5", Pontos = 5 }
             };
 
             foreach (var meta in metas)

@@ -25,9 +25,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr class="row" id="listaMetasRealizadas">
-                        <th class="col-md-2">Atividade</th>
-                        <th class="col-md-2">Descricao</th>
-                        <th class="col-md-5">Detalhes</th>
+                        <th class="col-md-3">Atividade</th>
+                        <th class="col-md-6">Detalhes</th>
                         <th class="col-md-1">Pontos</th>
                         <th class="col-md-1">Quantidade Realizada</th>
                         <th class="col-md-1">Total</th>        
@@ -37,13 +36,13 @@
                     @for(var index=0; index < Model.Count(); index++)
                     {
                         <tr class="row">
-                            <input asp-for="@Model[index].Id" type="hidden"/>
-                            <td class="col-md-2"><input asp-for="@Model[index].Nome" type="hidden"/>@Model[index].Nome</td>
-                            <td class="col-md-2"><input asp-for="@Model[index].Descricao" type="hidden"/>@Model[index].Descricao</td>
-                            <td class="col-md-5"><textarea rows="3" cols="65" asp-for="@Model[index].Detalhes"></textarea></td>
+                            <td class="col-md-3" data-toggle="tooltip" title="Requisitos: @Model[index].Requisitos"><input asp-for="@Model[index].Nome" type="hidden"/>@Model[index].Nome</td>                            
+                            <td class="col-md-6"><textarea rows="3" cols="80" asp-for="@Model[index].Detalhes"></textarea></td>
                             <td class="col-md-1"><input asp-for="@Model[index].Pontos" type="hidden"/>@Model[index].Pontos</td>
                             <td class="col-md-1"><input class="col-md-10" asp-for="@Model[index].Quantidade"/></td>
-                            <td class="col-md-1"><input asp-for="@Model[index].Total" type="hidden"/>@Model[index].Total</td>            
+                            <td class="col-md-1"><input asp-for="@Model[index].Total" type="hidden"/>@Model[index].Total</td>
+                            <input asp-for="@Model[index].Id" type="hidden"/>
+                            <input asp-for="@Model[index].Requisitos" type="hidden"/>
                         </tr>
                     }
                 </tbody>
