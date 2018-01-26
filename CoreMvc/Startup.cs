@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Devart.Data.Oracle;
 
 namespace CoreMvc
 {
@@ -30,7 +31,7 @@ namespace CoreMvc
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
             
-            services.AddDbContext<CoreMvcDbContext>(options => options.UseSqlServer(conString));
+            services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle("Data Source=10.10.57.116:1521/dese;User Id=CONSEGWEB_SAD;Password=sad123"));
             services.AddScoped<IMetas, Metas>();
         }
 

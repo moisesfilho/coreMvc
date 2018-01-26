@@ -14,17 +14,13 @@ namespace CoreMvc.Models.Repositories.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.HasDefaultSchema("sad");
 
-            // builder.Entity<Meta>().Property(m => m.Nome).HasColumnName("DSC_CATALOGO");            
-            // builder.Entity<Meta>().HasKey(m => m.Id).HasName("SEQ_CATALOGO");
-            // // builder.Entity<Meta>()
-            // //        .Property(i => i.Id)
-            // //        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
-            // //        .HasColumnName("SEQ_CATALOGO");
-            // builder.Entity<Meta>().ToTable("CATALOGO");
+            builder.Entity<Meta>().ToTable("catalogo");
+            builder.Entity<Meta>().HasKey(m => m.Id).HasName("SEQ_CATALOGO");
+            builder.Entity<Meta>().Property(m => m.Nome).HasColumnName("DSC_CATALOGO");
 
-            builder.Entity<MetaRealizada>().ToTable("metaRealizada").HasKey(m => m.Id);
+            //builder.Entity<MetaRealizada>().ForOracleToTable("metaRealizada").HasKey(m => m.Id);
             
             base.OnModelCreating(builder);
         }

@@ -1,5 +1,5 @@
 using System;
-using System.Data.OracleClient;
+using Devart.Data.Oracle;
 using NUnit.Framework;
 
 namespace Testes.Controllers
@@ -9,13 +9,19 @@ namespace Testes.Controllers
         [Test]
         public void TesteDeConexao()
         {
-            using (var _db = new OracleConnection("User Id=myUser;Password=myPassword;Data Source=MyOracleConnection"))
+            using (var connection = new OracleConnection("Data Source=10.10.57.116:1521/dese;User Id=CONSEGWEB_SAD;Password=sad123"))
             {
-                Console.WriteLine("Open connection...");
-                _db.Open();
-                Console.WriteLine(  "Connected to:" +_db.ServerVersion);
-                Console.WriteLine("\r\nDone. Press key for exit");
-                Console.ReadKey();
+                connection.Open();
+
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = "select * from sad.catalogo";
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string col = reader["DSC_CATALOGO"].ToString();
+                }                
             }    
         }
     }
