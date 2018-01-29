@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Devart.Data.Oracle.EFCore" Version="9.5.429" />
+    <PackageReference Include="dotNetCore.Data.OracleClient" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="nsubstitute" Version="3.1.0" />
     <PackageReference Include="nunit" Version="3.9.0" />

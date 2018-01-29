@@ -1,4 +1,6 @@
-﻿using CoreMvc.Models.Repositories;
+﻿using System.Data.OracleClient;
+using CoreMvc.Infra;
+using CoreMvc.Models.Repositories;
 using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -6,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Devart.Data.Oracle;
 
 namespace CoreMvc
 {
@@ -30,8 +31,11 @@ namespace CoreMvc
             {
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
+
             
-            services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle(conString));
+            var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            services.AddTransient<ConnectionFactory>(_ => new ConnectionFactory(connectionString));
+            // services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle(conString));
             services.AddScoped<IMetas, Metas>();
         }
 
@@ -53,7 +57,7 @@ namespace CoreMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=MetasRealizadas}/{action=Index}/{id?}");
             });
         }
     }

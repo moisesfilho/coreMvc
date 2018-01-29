@@ -1,5 +1,5 @@
 using System;
-using Devart.Data.Oracle;
+using System.Data.OracleClient;
 using NUnit.Framework;
 
 namespace Testes.Controllers
@@ -14,7 +14,7 @@ namespace Testes.Controllers
                 connection.Open();
 
                 var cmd = connection.CreateCommand();
-                cmd.CommandText = "select * from sad.catalogo";
+                cmd.CommandText = "select * from sad.catalogo where rownum <= 10";
 
                 var reader = cmd.ExecuteReader();
 

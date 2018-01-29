@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Data.OracleClient;
 using System.Linq;
+using CoreMvc.Infra;
 using CoreMvc.Models.Entities;
 using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
@@ -9,21 +11,34 @@ namespace CoreMvc.Models.Repositories
 {
     public class Metas : IMetas
     {
-        private readonly CoreMvcDbContext context;
-        public Metas(CoreMvcDbContext context)
+        private readonly ConnectionFactory connection;
+        public Metas(ConnectionFactory context)
         {
-            this.context = context;
+            this.connection = context;
         }
 
         public void Salvar(Meta meta)
         {
-            context.Metas.Add(meta);
-            context.SaveChanges();
+            
         }
 
         public IEnumerable<Meta> Todas()
-        {            
-            return from meta in context.Metas select meta;
+        {
+            var listaMetas = new List<Meta>();
+
+            var cmd = connection.GetCommand();
+            cmd.CommandText = "select * from sad.catalogo where rownum <= 10";
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var meta = new Meta { Nome = reader["DSC_CATALOGO"].ToString() };
+                    listaMetas.Add(meta);
+                }                
+            }
+
+            return listaMetas;
         }
 
         public void DeletarTodos()
