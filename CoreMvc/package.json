@@ -1,5 +1,12 @@
 {
-  "devDependencies": {
+  "name": "CoreMvc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "directories": {
+    "lib": "wwwroot/lib"
+  },
+  "dependencies": {
     "jquery": "^3.3.1"
   }
 }
