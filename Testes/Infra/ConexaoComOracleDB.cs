@@ -2,7 +2,7 @@ using System;
 using System.Data.OracleClient;
 using NUnit.Framework;
 
-namespace Testes.Controllers
+namespace Testes.Infra
 {
     public class ConexaoComOracleDB
     {

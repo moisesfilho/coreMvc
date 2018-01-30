@@ -1,5 +1,6 @@
 ﻿using System.Data.OracleClient;
 using CoreMvc.Infra;
+using CoreMvc.Models.Business;
 using CoreMvc.Models.Repositories;
 using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
@@ -22,21 +23,16 @@ namespace CoreMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string conString = Microsoft.Extensions
-                                        .Configuration
-                                        .ConfigurationExtensions
-                                        .GetConnectionString(this.Configuration, "DefaultConnection");
-
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
-
             
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddTransient<ConnectionFactory>(_ => new ConnectionFactory(connectionString));
             // services.AddDbContext<CoreMvcDbContext>(options => options.UseOracle(conString));
-            services.AddScoped<IMetas, Metas>();
+            services.AddScoped<AtividadesRealizadas>();
+            services.AddScoped<IAtividades, Atividades>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +53,7 @@ namespace CoreMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=MetasRealizadas}/{action=Index}/{id?}");
+                    template: "{controller=AtividadesRealizadas}/{action=Index}/{id?}");
             });
         }
     }

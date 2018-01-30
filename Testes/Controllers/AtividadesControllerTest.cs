@@ -2,6 +2,9 @@ using CoreMvc.Controllers;
 using CoreMvc.Models.Repositories.Interfaces;
 using NUnit.Framework;
 using NSubstitute;
+using CoreMvc.Models.Business;
+using CoreMvc.Models.Views;
+using System.Collections.Generic;
 
 namespace Tests.Controllers
 {
@@ -13,9 +16,10 @@ namespace Tests.Controllers
         [Test]
         public void IndexSempreRetornaUmaView()
         {
-            var metas = Substitute.For<IMetas>();
+            var atividadesRealizadas = Substitute.For<AtividadesRealizadas>((IAtividades) null);
+            atividadesRealizadas.Todas().Returns(new List<AtividadeRealizadaView>());
 
-            var atividadesController = new MetasRealizadasController(metas);
+            var atividadesController = new AtividadesRealizadasController(atividadesRealizadas);
 
             var result = atividadesController.Index();
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace CoreMvc.Models
+namespace CoreMvc.Models.Viwes
 {
     public class ErrorViewModel
     {

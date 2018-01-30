@@ -1,8 +1,8 @@
 @using System.Collections.Generic
-@model List<CoreMvc.Models.Views.MetaRealizadaView>
+@model List<CoreMvc.Models.Views.AtividadeRealizadaView>
 
 @{
-    ViewData["Title"] = "Metas Realizadas";
+    ViewData["Title"] = "Atividades Realizadas";
 }
 
 @section scripts {
@@ -17,14 +17,14 @@
 }
 
 <div>
-    <form asp-controller="MetasRealizadas" asp-action="Salvar" data-ajax="true" data-ajax-method="POST" data-ajax-complete="onComplete">
+    <form asp-controller="AtividadesRealizadas" asp-action="Salvar" data-ajax="true" data-ajax-method="POST" data-ajax-complete="onComplete">
         <div class="row"></div>
             <h2>@ViewData["Title"]</h2>
             <h3>@ViewData["Message"]</h3>
 
             <table class="table table-striped">
                 <thead>
-                    <tr class="row" id="listaMetasRealizadas">
+                    <tr class="row" id="listaAtividadesRealizadas">
                         <th class="col-md-3">Atividade</th>
                         <th class="col-md-6">Detalhes</th>
                         <th class="col-md-1">Pontos</th>
