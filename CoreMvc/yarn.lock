@@ -2,6 +2,52 @@
 # yarn lockfile v1
 
 
-jquery@^3.3.1:
+bootstrap-year-calendar@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-year-calendar/-/bootstrap-year-calendar-1.1.1.tgz#3a632b10d9f97d30850c5e141a94f5967368b633"
+  dependencies:
+    bootstrap ">=3.1.1"
+    jquery ">=1.8.2"
+
+bootstrap@>=3.1.1, bootstrap@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
+
+clndr@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/clndr/-/clndr-1.4.7.tgz#bc2b98bfefb3bacdb7b08198147ab7b8eb9c469d"
+  dependencies:
+    jquery ">=1.9"
+    moment ">=2.8.3"
+
+dhtmlx-scheduler@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/dhtmlx-scheduler/-/dhtmlx-scheduler-4.4.0.tgz#049e8519c16973981b114c136d56c09a91a8aac0"
+
+fullcalendar@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-3.8.2.tgz#ef7dc77b89134bbe6163e51136f7a1f8bfc1d807"
+  dependencies:
+    jquery "2 - 3"
+    moment "^2.9.0"
+
+jquery-validation-unobtrusive@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/jquery-validation-unobtrusive/-/jquery-validation-unobtrusive-3.2.6.tgz#0f8767c5462e30b4a5743d12461e8057da7572e5"
+  dependencies:
+    jquery ">=1.8"
+    jquery-validation ">=1.8"
+
+jquery-validation@>=1.8, jquery-validation@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/jquery-validation/-/jquery-validation-1.17.0.tgz#ab66b6b583d7740b9bbd148993e50e8ac041f35b"
+  dependencies:
+    jquery "^1.7 || ^2.0 || ^3.1"
+
+"jquery@2 - 3", jquery@>=1.8, jquery@>=1.8.2, jquery@>=1.9, "jquery@^1.7 || ^2.0 || ^3.1", jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
+moment@>=2.8.3, moment@^2.9.0:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"

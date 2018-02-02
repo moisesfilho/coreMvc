@@ -19,10 +19,10 @@ namespace CoreMvc.Controllers
             this.atividades = atividades;
         }
 
-        public IActionResult Index()
+        public IActionResult Diario()
         {
             var listaAtividadesRealizadas = atividades.Todas();
-            return View(listaAtividadesRealizadas);            
+            return PartialView("_Diario", listaAtividadesRealizadas);
         }
 
         [HttpPost]

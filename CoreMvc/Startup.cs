@@ -1,12 +1,9 @@
-﻿using System.Data.OracleClient;
-using CoreMvc.Infra;
+﻿using CoreMvc.Infra;
 using CoreMvc.Models.Business;
 using CoreMvc.Models.Repositories;
-using CoreMvc.Models.Repositories.Context;
 using CoreMvc.Models.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -43,7 +40,7 @@ namespace CoreMvc
                 app.UseDeveloperExceptionPage();
             }
             else
-            {
+            {               
                 app.UseExceptionHandler("/Home/Error");
             }
 
@@ -53,7 +50,7 @@ namespace CoreMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=AtividadesRealizadas}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}");
             });
         }
     }
