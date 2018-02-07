@@ -5,9 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "bootstrap-year-calendar": "^1.1.1",
-    "clndr": "^1.4.7",
-    "dhtmlx-scheduler": "^4.4.0",
     "fullcalendar": "^3.8.2",
     "jquery": "^3.3.1",
     "jquery-validation": "^1.17.0",

@@ -25,5 +25,6 @@ namespace CoreMvc.Models.Views
             }
         }
         public string Detalhes { get; set; }
+        public string NomeCurto { get; set; }
     }
 }

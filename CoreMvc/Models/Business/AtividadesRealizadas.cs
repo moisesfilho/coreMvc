@@ -24,6 +24,7 @@ namespace CoreMvc.Models.Business
                 atividadesRealizadas.Add(new AtividadeRealizadaView
                 {
                     Nome = meta.Nome,
+                    NomeCurto = meta.Nome.Length > 100 ? meta.Nome.Substring(0, 100) : meta.Nome,
                     Requisitos = meta.Requisitos,
                     Pontos = meta.Pontos
                 });

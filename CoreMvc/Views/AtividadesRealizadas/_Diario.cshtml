@@ -5,15 +5,15 @@
     ViewData["Title"] = "Atividades Realizadas";
 }
 
-<div>
-    <form asp-controller="AtividadesRealizadas" asp-action="Salvar" data-ajax="true" data-ajax-method="POST" data-ajax-complete="onComplete">
+<form asp-controller="AtividadesRealizadas" asp-action="Salvar" data-ajax="true" data-ajax-method="POST" data-ajax-complete="onComplete">
+    <div id="diario">    
         <table class="table table-striped">
             <thead>
                 <tr id="listaAtividadesRealizadas">
                     <th class="col-lg-3">Atividade</th>
                     <th class="col-lg-6">Detalhes</th>
                     <th class="col-lg-1">Pontos</th>
-                    <th class="col-lg-1">Quantidade Realizada</th>
+                    <th class="col-lg-1">Quantidade</th>
                     <th class="col-lg-1">Total</th>
                 </tr>
             </thead>
@@ -21,16 +21,16 @@
                 @for(var index=0; index < Model.Count(); index++) {
                     <tr>
                         <td class="col-lg-3" data-toggle="tooltip" title="Requisitos: @Model[index].Requisitos">
-                            <input asp-for="@Model[index].Nome" type="hidden">@Model[index].Nome</td>
+                            <input asp-for="@Model[index].Nome" type="hidden">@Model[index].NomeCurto</td>
                         <td class="col-lg-6">
-                            <textarea rows="3" cols="50" asp-for="@Model[index].Detalhes"></textarea>
+                            <textarea rows="3" style="min-width:100%" asp-for="@Model[index].Detalhes"></textarea>
                         </td>
-                        <td class="col-lg-1">
+                        <td class="col-lg-1 incPontos">
                             <input asp-for="@Model[index].Pontos" type="hidden">@Model[index].Pontos</td>
-                        <td class="col-lg-1">
-                            <input class="col-lg-10" asp-for="@Model[index].Quantidade">
+                        <td class="col-lg-1">                            
+                            <input type="number" class="incQuantidade" min="0" asp-for="@Model[index].Quantidade">
                         </td>
-                        <td class="col-lg-1">
+                        <td class="col-lg-1 incTotal">
                             <input asp-for="@Model[index].Total" type="hidden">@Model[index].Total</td>
                         <input asp-for="@Model[index].Id" type="hidden">
                         <input asp-for="@Model[index].Requisitos" type="hidden">
@@ -38,10 +38,10 @@
                 }
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-lg-12">
-                <button class="btn float-right">Salvar</button>
-            </div>
+    </div>
+    <div class="row linhaSalvarSemScroll">
+        <div class="col-lg-12">
+            <button class="btn float-right linhaSalvarSemScroll">Salvar</button>
         </div>
-    </form>
-</div>
+    </div>
+</form>
