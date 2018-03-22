@@ -35,16 +35,9 @@ namespace CoreMvc
             {
                 return Fluently
                     .Configure()
-                    .Database(SQLiteConfiguration.Standard.InMemory().ShowSql())
-                    // .Database(() =>
-                    // {
-                    //     return FluentNHibernate.Cfg.Db.MsSqlConfiguration
-                    //         .MsSql2012
-                    //         .ShowSql()
-                    //         .ConnectionString("");
-                    // })
+                    .Database(SQLiteConfiguration.Standard.UsingFile("firstProject.db"))            
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<MetaMap>())
-                    //.ExposeConfiguration(BuildSchema)
+                    .ExposeConfiguration(BuildSchema)
                     .BuildSessionFactory();
             });
 
