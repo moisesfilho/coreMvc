@@ -24,7 +24,7 @@ namespace CoreMvc
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }        
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,9 +35,8 @@ namespace CoreMvc
             {
                 return Fluently
                     .Configure()
-                    .Database(SQLiteConfiguration.Standard.UsingFile("firstProject.db"))            
+                    .Database(SQLiteConfiguration.Standard.UsingFile("coreMvc.db"))
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<MetaMap>())
-                    .ExposeConfiguration(BuildSchema)
                     .BuildSessionFactory();
             });
 
@@ -49,17 +48,6 @@ namespace CoreMvc
             );
 
             services.AddScoped<IMetas, Metas>();
-        }
-
-        private static void BuildSchema(Configuration config)
-        {
-            // delete the existing db on each run
-             if (File.Exists("aplicacoes.db"))
-                 File.Delete("aplicacoes.db");
-
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
-            new SchemaExport(config).Create(false, true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

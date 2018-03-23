@@ -11,8 +11,10 @@ namespace CoreMvc.Models.Repositoriess
 
         public Metas(ISession sessao) => this.sessao = sessao;
 
-        void IMetas.Salvar(Meta meta) => sessao.SaveOrUpdate(meta);
+        public void Salvar(Meta meta) => sessao.SaveOrUpdate(meta);
 
-        IList<Meta> IMetas.Todas() => sessao.QueryOver<Meta>().List();
+        public IList<Meta> Todas() => sessao.QueryOver<Meta>().List();
+
+        public IList<Meta> Todas(long codigoOrgao) => sessao.QueryOver<Meta>().List();
     }
 }
